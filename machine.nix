@@ -1,0 +1,107 @@
+{ inputs }:
+{ pkgs, ... }:
+{
+  imports = [
+    inputs.disko.nixosModules.disko
+    inputs.catppuccin.nixosModules.catppuccin
+  ];
+  hardware.firmware = [ pkgs.linux-firmware ];
+  boot.initrd = {
+    availableKernelModules = [
+      "xhci_pci"
+      "thunderbolt"
+      "nvme"
+      "usb_storage"
+      "sd_mod"
+      "sdhci_pci"
+    ];
+  };
+  catppuccin = rec {
+    enable = true;
+    autoEnable = enable;
+    accent = "green";
+    flavor = "mocha";
+  };
+  disko.devices = {
+    disk = {
+      main = {
+        type = "disk";
+        device = "/dev/nvme0n1";
+        content = {
+          type = "gpt";
+          partitions = {
+            ESP = {
+              size = "1G";
+              type = "EF00";
+              uuid = "01d82347-b293-46df-a0b8-94e8e4cf4d9e";
+              content = {
+                type = "filesystem";
+                format = "vfat";
+                mountpoint = "/boot";
+                mountOptions = [
+                  "uid=0"
+                  "gid=0"
+                  "fmask=0077"
+                  "dmask=0077"
+                ];
+              };
+            };
+            luks = {
+              size = "100%";
+              uuid = "64323137-3864-6162-2d64-3562342d3433";
+              content = {
+                type = "luks";
+                name = "nixos";
+                content = {
+                  type = "btrfs";
+                  extraArgs = [ "-f" ];
+                  mountpoint = "/";
+                };
+              };
+            };
+          };
+        };
+      };
+    };
+  };
+  home-manager.users.ivand = { ... }: {
+    imports = [ inputs.catppuccin.homeModules.catppuccin ];
+    catppuccin = rec {
+      enable = true;
+      autoEnable = enable;
+      accent = "green";
+      flavor = "mocha";
+      firefox.enable = false;
+      waybar.mode = "createLink";
+    };
+    wayland.windowManager.sway = {
+      config = {
+        keybindings = pkgs.lib.mkOptionDefault {
+          "Mod4+o" = "exec ${pkgs.which-key}/bin/which-key";
+        };
+        startup = [
+          { command = "swaymsg workspace 1"; }
+          { command = "exec kitty --app-id=scratchy --hold swaymsg move scratchpad"; }
+        ];
+        assigns = {
+          "1" = [
+            { app_id = "^emacs$"; }
+            { app_id = "^scratchy$"; }
+          ];
+          "2" = [ { app_id = "^org.ladybird.Ladybird$"; } ];
+        };
+        input = {
+          "*" = {
+            xkb_layout = "us,bg";
+            xkb_options = "grp:win_space_toggle";
+            xkb_variant = ",phonetic";
+          };
+          "type:touchpad" = {
+            tap = "enabled";
+            dwt = "enabled";
+          };
+        };
+      };
+    };
+  };
+}
