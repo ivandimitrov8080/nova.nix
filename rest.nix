@@ -1,4 +1,4 @@
-{ src, inputs }:
+{ inputs }:
 {
   pkgs,
   lib,
@@ -10,10 +10,10 @@
     useUserPackages = true;
     useGlobalPkgs = true;
     users.ivand = lib.mkMerge [
-      (import (src + "/modules/home-manager/accounts.nix") { inherit inputs pkgs; })
-      ({ config, ... }: {
+      (import ./accounts.nix { inherit pkgs; })
+      ({ ... }: {
         imports = [
-          (import (src + "/modules/home-manager") { inherit inputs pkgs config; })
+          (import ./desktop.nix { inherit inputs pkgs; })
         ];
         home = {
           username = "ivand";
@@ -40,9 +40,11 @@
   };
   hardware.bluetooth.enable = true;
   time.timeZone = "UTC";
-  environment.systemPackages = with pkgs; [
-    simplex-chat-desktop
-  ];
+  environment = {
+    systemPackages = with pkgs; [
+      simplex-chat-desktop
+    ];
+  };
   users = {
     users = {
       ivand = {

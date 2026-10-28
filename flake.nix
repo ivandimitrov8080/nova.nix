@@ -19,30 +19,23 @@
     };
     neomacs.url = "github:eval-exec/neomacs";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    # the code shared by all hosts lives in the hosts.nix repo
-    # src.url = "github:ivandimitrov8080/hosts.nix?dir=src";
-    src = {
-      url = "git+file:///home/ivand/src/hosts.nix?dir=src";
-      flake = false;
-    };
   };
   outputs =
     inputs@{ self, nixpkgs, ... }:
     let
       docsConfig = self.nixosConfigurations.nova;
-      overlays = import (inputs.src + "/overlays.nix") { inherit inputs docsConfig; };
-      nixosModules = import (inputs.src + "/modules") { inherit inputs overlays; };
+      modules = import ./modules.nix {
+        inherit inputs;
+        hostOverlays = [ (import ./overlay.nix { inherit inputs docsConfig; }) ];
+      };
     in
     {
       nixosConfigurations.nova = nixpkgs.lib.nixosSystem {
-        modules = with nixosModules; [
-          default
-          minimal
-          wg
-          (import ./rest.nix {
-            inherit inputs;
-            src = inputs.src;
-          })
+        modules = [
+          modules.default
+          modules.minimal
+          modules.wg
+          (import ./rest.nix { inherit inputs; })
           (import ./machine.nix { inherit inputs; })
         ];
       };
