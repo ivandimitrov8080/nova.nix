@@ -1,4 +1,8 @@
-{ final, prev, lib }:
+{
+  final,
+  prev,
+  lib,
+}:
 let
   domains = import ./domains.nix;
 in
