@@ -27,7 +27,7 @@
       novaOverlay = import ./overlay.nix { inherit inputs docsConfig; };
     in
     {
-      nixosConfigurations.nova = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.default = nixpkgs.lib.nixosSystem {
         # meta.host.* reads the flake inputs from here.
         specialArgs = { inherit inputs; };
         modules = [
