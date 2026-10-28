@@ -24,17 +24,16 @@
     inputs@{ self, nixpkgs, ... }:
     let
       docsConfig = self.nixosConfigurations.nova;
-      modules = import ./modules.nix {
-        inherit inputs;
-        hostOverlays = [ (import ./overlay.nix { inherit inputs docsConfig; }) ];
-      };
+      novaOverlay = import ./overlay.nix { inherit inputs docsConfig; };
     in
     {
       nixosConfigurations.nova = nixpkgs.lib.nixosSystem {
+        # meta.host.* reads the flake inputs from here.
+        specialArgs = { inherit inputs; };
         modules = [
-          modules.default
-          modules.minimal
-          modules.wg
+          inputs.configuration.nixosModules.default
+          inputs.home-manager.nixosModules.default
+          (import ./host.nix { inherit inputs novaOverlay; })
           (import ./rest.nix { inherit inputs; })
           (import ./machine.nix { inherit inputs; })
         ];

@@ -59,22 +59,12 @@ emacsWithPackagesFromUsePackage {
   # language servers, formatters, etc)
   extraEmacsPackages =
     epkgs:
-    with epkgs; [
-      pass-integration
-      editor-defaults
-      ui-chrome
-      completion-ui
-      structural-editing
-      llm-integration
-      code-intelligence
-      language-support
-      git-workflow
-      org-workflow
-      messaging
-      media-playback
-      rss-feeds
-      nix-tooling
-      utility-commands
+    let
+      # One list to edit when adding a domain: see ../emacsPackages/domains.nix
+      domains = map (name: epkgs.${name}) (import ../emacsPackages/domains.nix);
+    in
+    domains
+    ++ (with epkgs; [
       # Runtime executables and non-Elisp dependencies.
       haskell-language-server
       elmPackages.elm-language-server
@@ -134,5 +124,5 @@ emacsWithPackagesFromUsePackage {
           bg
         ]
       ))
-    ];
+    ]);
 }

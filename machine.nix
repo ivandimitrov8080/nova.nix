@@ -1,5 +1,15 @@
 { inputs }:
 { pkgs, ... }:
+let
+  # Same palette for the system and for the user session; only the
+  # home-manager specific extras differ.
+  catppuccinSettings = {
+    enable = true;
+    autoEnable = true;
+    accent = "green";
+    flavor = "mocha";
+  };
+in
 {
   imports = [
     inputs.disko.nixosModules.disko
@@ -16,12 +26,7 @@
       "sdhci_pci"
     ];
   };
-  catppuccin = rec {
-    enable = true;
-    autoEnable = enable;
-    accent = "green";
-    flavor = "mocha";
-  };
+  catppuccin = catppuccinSettings;
   disko.devices = {
     disk = {
       main = {
@@ -66,11 +71,7 @@
   };
   home-manager.users.ivand = { ... }: {
     imports = [ inputs.catppuccin.homeModules.catppuccin ];
-    catppuccin = rec {
-      enable = true;
-      autoEnable = enable;
-      accent = "green";
-      flavor = "mocha";
+    catppuccin = catppuccinSettings // {
       firefox.enable = false;
       waybar.mode = "createLink";
     };

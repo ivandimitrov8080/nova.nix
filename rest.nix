@@ -18,7 +18,6 @@
         home = {
           username = "ivand";
           homeDirectory = "/home/ivand";
-          pointerCursor.enable = true;
         };
         programs = {
           ssh.settings = {
@@ -120,10 +119,6 @@
         "gambling"
       ];
     };
-  };
-  meta.wireguard = {
-    enable = true;
-    address = "10.0.0.2/24";
   };
   programs.java.enable = true;
 }
