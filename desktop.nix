@@ -1,6 +1,7 @@
+{ inputs }:
 {
-  inputs,
   pkgs,
+  config,
   ...
 }:
 {
@@ -49,7 +50,7 @@
     fzf.enable = true;
     gh.enable = true;
     git.enable = true;
-    git.settings.core.excludesFile = "/home/ivand/.gitignore";
+    git.settings.core.excludesFile = "${config.home.homeDirectory}/.gitignore";
     gpg.enable = true;
     imv.enable = true;
     kitty.enable = true;

@@ -1,4 +1,8 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  config,
+  ...
+}:
 {
   accounts = {
     calendar = {
@@ -20,7 +24,7 @@
         remote = {
           passwordCommand = [
             "${pkgs.uutils-coreutils-noprefix}/bin/cat"
-            "/home/ivand/.wg_cred"
+            "${config.home.homeDirectory}/.wg_cred"
           ];
           type = "caldav";
           url = "https://dav.idimitrov.dev";
@@ -55,7 +59,7 @@
           userName = "ivan@idimitrov.dev";
           passwordCommand = [
             "${pkgs.uutils-coreutils-noprefix}/bin/cat"
-            "/home/ivand/.wg_cred"
+            "${config.home.homeDirectory}/.wg_cred"
           ];
         };
       };
@@ -67,7 +71,7 @@
           realName = "Ivan Kirilov Dimitrov";
           address = "ivan@idimitrov.dev";
           userName = address;
-          passwordCommand = "${pkgs.uutils-coreutils-noprefix}/bin/cat /home/ivand/.wg_cred";
+          passwordCommand = "${pkgs.uutils-coreutils-noprefix}/bin/cat ${config.home.homeDirectory}/.wg_cred";
           msmtp = {
             enable = true;
             extraConfig = {

@@ -21,22 +21,53 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
   outputs =
-    inputs@{ self, nixpkgs, ... }:
+    inputs@{ nixpkgs, ... }:
     let
-      docsConfig = self.nixosConfigurations.nova;
-      novaOverlay = import ./overlay.nix { inherit inputs docsConfig; };
-    in
-    {
-      nixosConfigurations.default = nixpkgs.lib.nixosSystem {
+      # Build option docs from a separate, host-neutral evaluation. Reusing
+      # `self.nixosConfigurations.default` would make the overlay depend on the
+      # very configuration that consumes it.
+      docsConfig = nixpkgs.lib.nixosSystem {
+        modules = [
+          inputs.configuration.nixosModules.default
+          inputs.home-manager.nixosModules.default
+          { nixpkgs.hostPlatform = "x86_64-linux"; }
+        ];
+      };
+      docsNixos = docsConfig.config.system.build.manual.optionsJSON;
+      novaOverlay = import ./overlay.nix { inherit inputs docsNixos; };
+
+      host = nixpkgs.lib.nixosSystem {
         # meta.host.* reads the flake inputs from here.
         specialArgs = { inherit inputs; };
         modules = [
           inputs.configuration.nixosModules.default
           inputs.home-manager.nixosModules.default
-          (import ./host.nix { inherit inputs novaOverlay; })
+          (import ./host.nix { inherit inputs; })
           (import ./rest.nix { inherit inputs; })
           (import ./machine.nix { inherit inputs; })
+          {
+            nixpkgs = {
+              hostPlatform = "x86_64-linux";
+              overlays = [
+                inputs.emacs-overlay.overlays.default
+                novaOverlay
+                inputs.configuration.overlays.default
+              ];
+            };
+            nix.registry = {
+              self.flake = inputs.self;
+              nixpkgs.flake = inputs.nixpkgs;
+              p.flake = inputs.nixpkgs;
+            };
+          }
         ];
       };
+    in
+    {
+      nixosConfigurations.default = host;
+
+      checks.x86_64-linux.default = nixpkgs.legacyPackages.x86_64-linux.runCommand "eval-nova" { } ''
+        echo ${builtins.unsafeDiscardStringContext host.config.system.build.toplevel.drvPath} > $out
+      '';
     };
 }

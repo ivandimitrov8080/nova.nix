@@ -1,7 +1,9 @@
-# Everything host specific about the laptop: which overlays, which option docs,
-# which wireguard identity and where DNS goes. The baseline lives in
+# Everything host specific about the laptop: which option docs, which
+# wireguard identity and where DNS goes. The baseline lives in
 # configuration.nix's meta.{host,minimal,wireguard,dns} modules.
-{ inputs, novaOverlay }:
+{
+  inputs,
+}:
 {
   pkgs,
   config,
@@ -11,10 +13,11 @@
   imports = [ ./peers.nix ];
 
   meta = {
-    host.overlays = [
-      inputs.emacs-overlay.overlays.default
-      novaOverlay
-    ];
+    host = {
+      stateVersion = "26.05";
+    };
+
+    graphicalBoot.plymouthTheme = "/etc/plymouth/themes/catppuccin-mocha/catppuccin-mocha.plymouth";
 
     minimal = {
       enable = true;
