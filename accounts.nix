@@ -101,29 +101,19 @@
             authentication = "login";
           };
           notmuch.enable = true;
-          offlineimap.enable = true;
-          imapnotify = {
+          mbsync = {
             enable = true;
-            boxes = [
-              "INBOX"
-            ];
-            onNotify = "offlineimap";
-            onNotifyPost = "notmuch new";
+            create = "both";
           };
         };
       };
     };
   };
   services = {
-    imapnotify = {
+    mbsync = {
       enable = true;
-      path = with pkgs; [
-        offlineimap
-        notmuch
-        libnotify
-        pass
-        afew
-      ];
+      frequency = "*:0/1";
+      postExec = "${pkgs.notmuch}/bin/notmuch new";
     };
     pimsync.enable = true;
   };
@@ -148,6 +138,7 @@
     };
     pimsync.enable = true;
     msmtp.enable = true;
+    mbsync.enable = true;
     khal = {
       enable = true;
       settings.default.default_calendar = "ivand1";
@@ -158,7 +149,6 @@
       };
     };
     khard.enable = true;
-    offlineimap.enable = true;
     afew = {
       enable = true;
       extraConfig =
