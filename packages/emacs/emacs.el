@@ -11,7 +11,6 @@
 
 (require 'pass-integration)
 (require 'editor-defaults)
-(require 'ui-chrome)
 (require 'completion-ui)
 (require 'structural-editing)
 (require 'llm-integration)
@@ -24,6 +23,7 @@
 (require 'rss-feeds)
 (require 'nix-tooling)
 (require 'utility-commands)
+(require 'ui-chrome)
 
 ;;; Final setup
 (provide 'emacs)
