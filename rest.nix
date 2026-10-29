@@ -101,6 +101,7 @@
         "Mzone 301".psk = "Mzone@107";
         "Luna House".psk = "68686868";
         "Gold Time".psk = "goldtime";
+        "Ngoc Tu T3".psk = "tuannhan";
       };
     };
     stevenblack = {
