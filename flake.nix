@@ -65,6 +65,8 @@
     in
     {
       nixosConfigurations.default = host;
+      nixosConfigurations.nova = host;
+
 
       checks.x86_64-linux.default = nixpkgs.legacyPackages.x86_64-linux.runCommand "eval-nova" { } ''
         echo ${builtins.unsafeDiscardStringContext host.config.system.build.toplevel.drvPath} > $out

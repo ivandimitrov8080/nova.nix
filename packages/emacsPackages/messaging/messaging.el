@@ -12,6 +12,7 @@
 
 (defun messaging-init ()
   "Configure mail and messaging."
+  (require 'notmuch)
   (setq notmuch-crypto-process-mime t
         notmuch-hello-auto-refresh t
         notmuch-saved-searches '((:name "inbox" :query "tag:inbox" :key "i")
@@ -24,7 +25,6 @@
         shr-use-colors nil
         shr-blocked-images ".*"
         shr-inhibit-images t)
-  (autoload 'notmuch "notmuch" "Notmuch mail" t)
   (add-hook 'notmuch-mua-send-hook #'mml-secure-message-sign-pgpmime)
   (with-eval-after-load 'notmuch
     (setq notmuch-search-history nil))

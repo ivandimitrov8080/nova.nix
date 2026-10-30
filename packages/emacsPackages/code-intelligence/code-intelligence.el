@@ -28,7 +28,8 @@
     (fancy-compilation-mode))
   (setq compilation-scroll-output t
         compilation-ask-about-save nil
-        compilation-always-kill t)
+        compilation-always-kill t
+        fancy-compilation-override-colors nil)
 
   (advice-add 'compilation-start
               :around (lambda (orig &rest args)
