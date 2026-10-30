@@ -51,7 +51,7 @@
 (defun rebuild-vps ()
   "Rebuild vpsfree-ivand."
   (interactive)
-  (compile "askpass | ssh vpsfree-ivand 'cd ~/src/hosts.nix; git pull; sudo -S nixos-rebuild switch --flake ./#vps'"))
+  (compile "askpass | ssh vpsfree-ivand 'cd ~/src/vps.nix; git pull; sudo -S nixos-rebuild switch --flake'"))
 
 (defun utility-commands-init ()
   "Configure miscellaneous helpers."
