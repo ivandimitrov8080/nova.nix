@@ -45,7 +45,7 @@
         company-show-quick-access t
         company-show-quick-access t)
 
-  (add-hook 'message-mode-hook #'company-dictionary-mode)
+  (add-hook 'notmuch-message-mode-hook #'company-dictionary-mode)
 
   (add-hook 'after-init-hook 'global-flycheck-mode)
   (add-hook 'after-init-hook 'global-flycheck-annotate-mode)

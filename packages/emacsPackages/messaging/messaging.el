@@ -28,7 +28,6 @@
   (add-hook 'notmuch-mua-send-hook #'mml-secure-message-sign-pgpmime)
   (with-eval-after-load 'notmuch
     (setq notmuch-search-history nil))
-  (add-hook 'notmuch-message-mode-hook 'message-mode)
 
   (require 'erc)
   (add-to-list 'erc-modules 'sasl)
