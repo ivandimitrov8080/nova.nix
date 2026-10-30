@@ -35,7 +35,8 @@
 
   (require 'recentf)
   (recentf-mode 1)
-  (setq recentf-max-saved-items 100)
+  (setq recentf-max-saved-items 100
+        recentf-list '())
 
   (global-set-key (kbd "C-c <left>")  'windmove-left)
   (global-set-key (kbd "C-c <right>") 'windmove-right)
