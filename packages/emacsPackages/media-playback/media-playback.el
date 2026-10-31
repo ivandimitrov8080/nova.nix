@@ -25,7 +25,6 @@
   (interactive)
   (emms-stop)
   (emms-playlist-current-clear)
-  (emms-player-mpv-proc-stop)
   (emms-add-directory-tree "~/shows/")
   (emms))
 
