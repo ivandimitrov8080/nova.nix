@@ -8,6 +8,30 @@
 (require 'emms-setup)
 (require 'transmission)
 
+(defconst emms-last-track (concat user-emacs-directory "emms-last-track"))
+
+(defun emms-save-last ()
+  "Saves last played file to disk."
+  (with-temp-file emms-last-track (insert (prin1-to-string (emms-playlist-current-selected-track)))))
+
+(defun emms-read-last ()
+  "Reads last played file from disk."
+  (if (file-exists-p emms-last-track)
+      (with-temp-buffer
+        (insert-file-contents emms-last-track)
+        (read (current-buffer)))
+    (message "Last track not saved yet.")
+    nil))
+
+(defun emms-select-by-name (track)
+  "Selects and marks emms track by TRACK name."
+  (if track
+      (with-current-emms-playlist
+        (goto-char (point-min))
+        (when (search-forward (emms-track-name track) nil t)
+          (emms-playlist-select (match-beginning 0))))
+    (message "No track selected.")))
+
 (defun browse-url-emms (url &rest _args)
   "Automatically open URL in REST mpv."
   (emms-play-url url))
@@ -26,6 +50,7 @@
   (emms-stop)
   (emms-playlist-current-clear)
   (emms-add-directory-tree "~/shows/")
+  (emms-select-by-name (emms-read-last))
   (emms))
 
 (defun media-playback-init ()
@@ -37,6 +62,7 @@
         emms-browser-thumbnail-small-size 64
         emms-browser-thumbnail-medium-size 128
         emms-track-description-function #'emms-info-track-description)
+  (add-hook 'emms-player-started-hook #'emms-save-last)
 
   (setq browse-url-handlers
         `(("youtube\\.com/watch\\?v=.*" . browse-url-emms)
