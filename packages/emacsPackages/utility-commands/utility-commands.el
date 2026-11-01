@@ -10,6 +10,7 @@
 (require 'request)
 (require 'xterm-color)
 (require 'khalel)
+(require 'ddgr)
 
 (defun wttr ()
   "Get the current weather."
