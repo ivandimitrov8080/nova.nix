@@ -9,6 +9,7 @@
   dired-quick-sort,
   vterm,
   llm-integration,
+  pkgs,
   ...
 }:
 trivialBuild {
@@ -25,5 +26,17 @@ trivialBuild {
     dired-quick-sort
     vterm
     llm-integration
+  ];
+  propagatedUserEnvPkgs = [
+    pkgs.coreutils
+    pkgs.findutils
+    pkgs.git
+    pkgs.bash
+    (pkgs.aspellWithDicts (
+      d: with d; [
+        en
+        bg
+      ]
+    ))
   ];
 }

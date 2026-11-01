@@ -5,6 +5,7 @@
   code-intelligence,
   pass-integration,
   media-playback,
+  pkgs,
   ...
 }:
 trivialBuild {
@@ -17,5 +18,11 @@ trivialBuild {
     code-intelligence
     pass-integration
     media-playback
+  ];
+  propagatedUserEnvPkgs = [
+    pkgs.notmuch
+    pkgs.msmtp
+    pkgs.gnupg
+    pkgs.libwebp
   ];
 }

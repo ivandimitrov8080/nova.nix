@@ -12,6 +12,7 @@
   eglot,
   company,
   treesit-grammars,
+  pkgs,
   ...
 }:
 trivialBuild {
@@ -31,5 +32,30 @@ trivialBuild {
     eglot
     company
     treesit-grammars.with-all-grammars
+  ];
+  propagatedUserEnvPkgs = [
+    pkgs.nixd
+    pkgs.elmPackages.elm-language-server
+    pkgs.elmPackages.elm-format
+    pkgs.haskell-language-server
+    pkgs.typescript-language-server
+    pkgs.vscode-html-languageserver
+    pkgs.vscode-css-languageserver
+    pkgs.nushell
+    pkgs.tinymist
+    pkgs.typst
+    pkgs.rust-analyzer
+    pkgs.python3Packages.python-lsp-server
+    (pkgs.ghc.withPackages (
+      hp: with hp; [
+        notmuch
+        mime
+        hp.pandoc
+        zlib
+        Glob
+        extra
+        tar
+      ]
+    ))
   ];
 }

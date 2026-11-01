@@ -1,35 +1,6 @@
 {
   emacs-unstable-pgtk,
   emacsWithPackagesFromUsePackage,
-  python3,
-  python3Packages,
-  coreutils,
-  typst,
-  nixd,
-  haskell-language-server,
-  typescript-language-server,
-  vscode-html-languageserver,
-  vscode-css-languageserver,
-  tinymist,
-  elmPackages,
-  mcp-server-fetch,
-  mcp-server-filesystem,
-  mcp-server-time,
-  mcp-server-git,
-  open-websearch,
-  libwebp,
-  curl,
-  noto-fonts,
-  noto-fonts-color-emoji,
-  noto-fonts-lgc-plus,
-  pandoc,
-  discount,
-  tree,
-  nixfmt,
-  ghc,
-  exiftool,
-  aspellWithDicts,
-  askpass,
   ...
 }:
 emacsWithPackagesFromUsePackage {
@@ -54,75 +25,11 @@ emacsWithPackagesFromUsePackage {
   # Package is optional, defaults to pkgs.emacs
   package = emacs-unstable-pgtk;
 
-  # Optionally provide extra packages not in the configuration file.
-  # This can also include extra executables to be run by Emacs (linters,
-  # language servers, formatters, etc)
+  # The domain packages are the whole configuration. Each one declares its own
+  # Emacs dependencies and the runtime dependencies it owns (language servers,
+  # linters, MCP servers, fonts, ...) via `propagatedUserEnvPkgs`, so nothing
+  # executable is listed here.
   extraEmacsPackages =
     epkgs:
-    let
-      # One list to edit when adding a domain: see ../emacsPackages/domains.nix
-      domains = map (name: epkgs.${name}) (import ../emacsPackages/domains.nix);
-    in
-    domains
-    ++ (with epkgs; [
-      # Runtime executables and non-Elisp dependencies.
-      haskell-language-server
-      elmPackages.elm-language-server
-      nixd
-      typescript-language-server
-      vscode-html-languageserver
-      vscode-css-languageserver
-      tinymist
-      coreutils
-      typst
-      python3Packages.python-lsp-server
-      (python3.withPackages (
-        ps: with ps; [
-          epc
-          networkx
-          pygments
-          grep-ast
-          diskcache
-          tiktoken
-          tqdm
-          gitignore-parser
-          scipy
-          litellm
-          orjson
-        ]
-      ))
-      (ghc.withPackages (
-        hp: with hp; [
-          notmuch
-          mime
-          hp.pandoc
-          zlib
-          Glob
-          extra
-          tar
-        ]
-      ))
-      mcp-server-fetch
-      mcp-server-filesystem
-      mcp-server-time
-      mcp-server-git
-      open-websearch
-      libwebp
-      curl
-      noto-fonts
-      noto-fonts-color-emoji
-      noto-fonts-lgc-plus
-      pandoc
-      discount
-      tree
-      nixfmt
-      exiftool
-      askpass
-      (aspellWithDicts (
-        d: with d; [
-          en
-          bg
-        ]
-      ))
-    ]);
+    map (name: epkgs.${name}) (import ../emacsPackages/domains.nix);
 }

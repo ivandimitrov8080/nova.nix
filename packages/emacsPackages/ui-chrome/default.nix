@@ -8,6 +8,7 @@
   nerd-icons-ibuffer,
   doom-modeline,
   inhibit-mouse,
+  pkgs,
   ...
 }:
 trivialBuild {
@@ -23,5 +24,10 @@ trivialBuild {
     nerd-icons-ibuffer
     doom-modeline
     inhibit-mouse
+  ];
+  propagatedUserEnvPkgs = [
+    pkgs.noto-fonts
+    pkgs.noto-fonts-color-emoji
+    pkgs.noto-fonts-lgc-plus
   ];
 }

@@ -2,6 +2,7 @@
   trivialBuild,
   magit,
   diff-hl,
+  pkgs,
   ...
 }:
 trivialBuild {
@@ -12,4 +13,5 @@ trivialBuild {
     magit
     diff-hl
   ];
+  propagatedUserEnvPkgs = [ pkgs.git ];
 }

@@ -14,6 +14,9 @@ let
   # resolve dependencies from `final` so that packages from the other overlays
   # (configuration.nix, emacs-overlay) are visible here, not just base nixpkgs
   inherit (final) callPackage lib;
+  # captured before the scope overrides below shadow `final`; domain packages
+  # use this to reference the runtime executables they own.
+  pkgs = final;
   emacsSrc = ./packages/emacs;
   emacsPackagesSrc = ./packages/emacsPackages;
 in
@@ -38,7 +41,7 @@ in
   emacsPackagesFor =
     emacs:
     (prev.emacsPackagesFor emacs).overrideScope (
-      final: prev: import emacsPackagesSrc { inherit final prev lib; }
+      final: prev: import emacsPackagesSrc { inherit final prev lib pkgs; }
     );
   docs-nixos = docsNixos;
 }

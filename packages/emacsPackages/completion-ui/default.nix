@@ -6,6 +6,7 @@
   marginalia,
   consult,
   helpful,
+  pkgs,
   ...
 }:
 trivialBuild {
@@ -19,5 +20,9 @@ trivialBuild {
     marginalia
     consult
     helpful
+  ];
+  propagatedUserEnvPkgs = [
+    pkgs.ripgrep
+    pkgs.gnugrep
   ];
 }

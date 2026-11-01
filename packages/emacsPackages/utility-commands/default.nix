@@ -4,6 +4,7 @@
   request,
   xterm-color,
   khalel,
+  pkgs,
   ...
 }:
 trivialBuild {
@@ -15,5 +16,11 @@ trivialBuild {
     request
     xterm-color
     khalel
+  ];
+  propagatedUserEnvPkgs = [
+    pkgs.askpass
+    pkgs.tree
+    pkgs.khal
+    pkgs.openssh
   ];
 }

@@ -2,6 +2,7 @@
   trivialBuild,
   emms,
   transmission,
+  pkgs,
   ...
 }:
 trivialBuild {
@@ -11,5 +12,10 @@ trivialBuild {
   packageRequires = [
     emms
     transmission
+  ];
+  propagatedUserEnvPkgs = [
+    pkgs.mpv
+    pkgs.exiftool
+    pkgs.libwebp
   ];
 }

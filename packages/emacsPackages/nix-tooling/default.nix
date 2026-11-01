@@ -3,6 +3,7 @@
   nixos-options,
   vertico-nixos-options,
   direnv,
+  pkgs,
   ...
 }:
 trivialBuild {
@@ -13,5 +14,9 @@ trivialBuild {
     nixos-options
     vertico-nixos-options
     direnv
+  ];
+  propagatedUserEnvPkgs = [
+    pkgs.direnv
+    pkgs.nixfmt
   ];
 }
