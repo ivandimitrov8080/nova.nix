@@ -14,6 +14,7 @@
 (require 'typst-ts-mode)
 (require 'markdown-mode)
 (require 'yaml-mode)
+(require 'agda2-mode)
 (require 'eglot)
 (require 'company)
 
@@ -49,6 +50,8 @@
   (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-ts-mode))
 
   (add-to-list 'auto-mode-alist '("\\.typ\\'" . typst-ts-mode))
+
+  (add-to-list 'auto-mode-alist '("\\.agda\\'" . agda2-mode))
 
   (add-hook 'nix-ts-mode-hook 'eglot-ensure)
   (add-hook 'elm-mode-hook 'eglot-ensure)

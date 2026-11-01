@@ -9,6 +9,7 @@
   typst-ts-mode,
   markdown-mode,
   yaml-mode,
+  agda2-mode,
   eglot,
   company,
   treesit-grammars,
@@ -29,6 +30,7 @@ trivialBuild {
     typst-ts-mode
     markdown-mode
     yaml-mode
+    agda2-mode
     eglot
     company
     treesit-grammars.with-all-grammars
@@ -46,6 +48,12 @@ trivialBuild {
     pkgs.typst
     pkgs.rust-analyzer
     pkgs.python3Packages.python-lsp-server
+    (pkgs.agda.withPackages (
+      p: with p; [
+        standard-library
+        cubical
+      ]
+    ))
     (pkgs.ghc.withPackages (
       hp: with hp; [
         notmuch
