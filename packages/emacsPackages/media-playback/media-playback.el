@@ -39,6 +39,7 @@
 (defun emms-mus ()
   "Loads emms with music directory."
   (interactive)
+  (remove-hook 'emms-player-started-hook #'emms-save-last)
   (emms-playlist-current-clear)
   (emms-add-directory-tree "~/mus/")
   (emms-shuffle)
@@ -47,6 +48,7 @@
 (defun emms-shows ()
   "Loads emms with shows directory."
   (interactive)
+  (add-hook 'emms-player-started-hook #'emms-save-last)
   (emms-stop)
   (emms-playlist-current-clear)
   (emms-add-directory-tree "~/shows/")
@@ -62,7 +64,6 @@
         emms-browser-thumbnail-small-size 64
         emms-browser-thumbnail-medium-size 128
         emms-track-description-function #'emms-info-track-description)
-  (add-hook 'emms-player-started-hook #'emms-save-last)
 
   (setq browse-url-handlers
         `(("youtube\\.com/watch\\?v=.*" . browse-url-emms)
