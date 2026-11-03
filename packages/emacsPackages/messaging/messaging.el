@@ -42,7 +42,9 @@
         telega-emoji-use-images nil
         telega-chat-input-markups '("markdown2" "org" nil)
         telega-msg-save-dir "~/dl/telega"
-        telega-browse-url-alist browse-url-handlers)
+        telega-browse-url-alist browse-url-handlers
+        telega-open-message-as-file '(video)
+        telega-open-file-function #'telega-xdg-open)
 
   (auto-image-file-mode 1)
   (add-hook 'telega-load-hook 'telega-notifications-mode)
