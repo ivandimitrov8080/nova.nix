@@ -16,15 +16,14 @@ in
     inputs.catppuccin.nixosModules.catppuccin
   ];
   hardware.firmware = [ pkgs.linux-firmware ];
-  boot.initrd = {
-    availableKernelModules = [
-      "xhci_pci"
-      "thunderbolt"
-      "nvme"
-      "usb_storage"
-      "sd_mod"
-      "sdhci_pci"
-    ];
+  boot = {
+    loader.limine = {
+      resolution = "1920x1080";
+      style.interface.resolution = "1920x1080";
+    };
+    initrd = {
+      kernelModules = [ "i915" ];
+    };
   };
   catppuccin = catppuccinSettings;
   disko.devices = {
