@@ -56,8 +56,6 @@ failure alike)."
    :args nil
    :category "emacs")
 
-  (add-to-list 'gptel-tools (gptel-get-tool "compile"))
-
   (setf (alist-get 'default gptel-directives)
         "You are a large language model living in Emacs and a helpful assistant. Respond concisely.
 Write Org Mode and NEVER Markdown as the output will be rendered inside an Emacs buffer and it must be valid Org Mode.")
