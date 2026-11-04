@@ -63,6 +63,9 @@
     rofi.enable = true;
     ssh.enable = true;
     starship.enable = true;
+    starship.settings = {
+      git_status.disabled = true;
+    };
     swaylock.enable = true;
     taskwarrior.enable = true;
     tealdeer.enable = true;
