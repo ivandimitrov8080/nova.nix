@@ -41,7 +41,15 @@ in
   emacsPackagesFor =
     emacs:
     (prev.emacsPackagesFor emacs).overrideScope (
-      final: prev: import emacsPackagesSrc { inherit final prev lib pkgs; }
+      final: prev:
+      import emacsPackagesSrc {
+        inherit
+          final
+          prev
+          lib
+          pkgs
+          ;
+      }
     );
   docs-nixos = docsNixos;
 }

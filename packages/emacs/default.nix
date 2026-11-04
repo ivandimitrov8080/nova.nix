@@ -29,7 +29,5 @@ emacsWithPackagesFromUsePackage {
   # Emacs dependencies and the runtime dependencies it owns (language servers,
   # linters, MCP servers, fonts, ...) via `propagatedUserEnvPkgs`, so nothing
   # executable is listed here.
-  extraEmacsPackages =
-    epkgs:
-    map (name: epkgs.${name}) (import ../emacsPackages/domains.nix);
+  extraEmacsPackages = epkgs: map (name: epkgs.${name}) (import ../emacsPackages/domains.nix);
 }
