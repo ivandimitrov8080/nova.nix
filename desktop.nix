@@ -80,6 +80,7 @@
     nushell.extraConfig = pkgs.lib.mkAfter ''
       def --wrapped sudo [...rest] { ^sudo -A ...$rest }
     '';
+    carapace.enable = true;
     zsh.enable = true;
   };
   services = {
