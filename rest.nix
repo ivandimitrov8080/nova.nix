@@ -17,7 +17,7 @@
       home = {
         username = "ivand";
         homeDirectory = "/home/ivand";
-        stateVersion = "26.05";
+        stateVersion = "26.11";
       };
       programs = {
         ssh.settings = {
