@@ -1,8 +1,6 @@
 { inputs }:
 { pkgs, ... }:
 let
-  # Same palette for the system and for the user session; only the
-  # home-manager specific extras differ.
   catppuccinSettings = {
     enable = true;
     autoEnable = true;

@@ -1,21 +1,10 @@
-# nova-specific overlay. Everything here needs either a flake input or the
-# evaluated host configuration, so it cannot live in the shared
-# configuration.nix overlay (src/packages/overlay.nix), which only sees
-# final/prev.
-#
-# `docsNixos` is built by a separate evaluation. Passing the host's own
-# configuration back into its package set would otherwise recurse.
 {
   inputs,
   docsNixos,
 }:
 final: prev:
 let
-  # resolve dependencies from `final` so that packages from the other overlays
-  # (configuration.nix, emacs-overlay) are visible here, not just base nixpkgs
   inherit (final) callPackage lib;
-  # captured before the scope overrides below shadow `final`; domain packages
-  # use this to reference the runtime executables they own.
   pkgs = final;
   emacsSrc = ./packages/emacs;
   emacsPackagesSrc = ./packages/emacsPackages;

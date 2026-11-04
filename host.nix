@@ -1,6 +1,3 @@
-# Everything host specific about the laptop: which option docs, which
-# wireguard identity and where DNS goes. The baseline lives in
-# configuration.nix's meta.{host,minimal,wireguard,dns} modules.
 {
   inputs,
 }:

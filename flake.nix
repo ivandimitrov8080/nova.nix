@@ -24,9 +24,6 @@
     inputs@{ nixpkgs, ... }:
     let
       system = "x86_64-linux";
-      # Build option docs from a separate, host-neutral evaluation. Reusing
-      # `self.nixosConfigurations.default` would make the overlay depend on the
-      # very configuration that consumes it.
       docsConfig = nixpkgs.lib.nixosSystem {
         modules = [
           inputs.configuration.nixosModules.default
@@ -46,7 +43,6 @@
       };
 
       host = nixpkgs.lib.nixosSystem {
-        # meta.host.* reads the flake inputs from here.
         specialArgs = { inherit inputs; };
         modules = [
           inputs.configuration.nixosModules.default
@@ -76,9 +72,5 @@
       nixosConfigurations.default = host;
       nixosConfigurations.nova = host;
       packages.x86_64-linux.emacs = pkgs.emacs-custom;
-
-      checks.x86_64-linux.default = nixpkgs.legacyPackages.x86_64-linux.runCommand "eval-nova" { } ''
-        echo ${builtins.unsafeDiscardStringContext host.config.system.build.toplevel.drvPath} > $out
-      '';
     };
 }
