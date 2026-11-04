@@ -172,6 +172,7 @@
             "b4b-inkasso.com"
             "agoda.com"
             "vanillaforums.email"
+            "torre.ai"
           ];
         in
         ''
