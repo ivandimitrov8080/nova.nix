@@ -25,6 +25,10 @@
             HostName = "10.0.0.1";
             User = "ivand";
           };
+          vpsfree-git = {
+            HostName = "10.0.0.1";
+            User = "git";
+          };
         };
         git = {
           settings = {
