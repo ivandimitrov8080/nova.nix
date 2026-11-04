@@ -31,7 +31,6 @@
     };
 
     dns = {
-      # the hub is the only resolver this host may talk to
       servers = [ config.meta.wireguard.peers.hub.ip ];
       egress.restrict = true;
     };
