@@ -28,7 +28,8 @@
    kept-old-versions 2
    version-control t
    vc-follow-symlinks t
-   dired-listing-switches "-alB")
+   dired-listing-switches "-laB"
+   dired-ls-sorting-switches "-laB")
 
   (require 'savehist)
   (savehist-mode)

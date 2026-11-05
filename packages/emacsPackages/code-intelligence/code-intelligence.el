@@ -76,7 +76,6 @@
   (setq dired-quick-sort-group-directories-last ?y
         dired-quick-sort-sort-by-last "version"
         dired-quick-sort-reverse-last ?n)
-  (setq dired-ls-sorting-switches "-laB")
   (dired-quick-sort-setup))
 
 (unless noninteractive
