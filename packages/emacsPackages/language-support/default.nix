@@ -47,7 +47,7 @@ trivialBuild {
     pkgs.tinymist
     pkgs.typst
     pkgs.rust-analyzer
-    pkgs.python3Packages.python-lsp-server
+    pkgs.pyright
     (pkgs.agda.withPackages (
       p: with p; [
         standard-library

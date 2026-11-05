@@ -73,7 +73,7 @@
   (add-to-list 'eglot-server-programs '(nushell-mode . ("nu" "--lsp")))
   (add-to-list 'eglot-server-programs '(typst-ts-mode . ("tinymist")))
   (add-to-list 'eglot-server-programs '(rust-ts-mode . ("rust-analyzer")))
-  (add-to-list 'eglot-server-programs '(python-ts-mode . ("pylsp"))))
+  (add-to-list 'eglot-server-programs '(python-ts-mode . ("pyright"))))
 
 (unless noninteractive
   (language-support-init))
