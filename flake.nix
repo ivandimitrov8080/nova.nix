@@ -1,10 +1,11 @@
 {
   inputs = {
+    configuration.url = "git://idimitrov.dev/configuration.nix";
+    nixpkgs.url = "git://idimitrov.dev/nixpkgs/nixos-unstable";
     catppuccin = {
       url = "github:catppuccin/nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    configuration.url = "github:ivandimitrov8080/configuration.nix";
     disko = {
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -18,7 +19,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     neomacs.url = "github:eval-exec/neomacs";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
   outputs =
     inputs@{ nixpkgs, ... }:
