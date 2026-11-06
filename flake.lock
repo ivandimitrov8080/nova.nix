@@ -22,17 +22,17 @@
     },
     "configuration": {
       "locked": {
-        "lastModified": 1793821825,
-        "narHash": "sha256-UdmLfKfpxwlyO5nTo2WlfF2du0YeyE9oFUrBrQlQQ3w=",
-        "owner": "ivandimitrov8080",
-        "repo": "configuration.nix",
-        "rev": "10cbfb22b09901d1297f40d6451354d532f39ece",
-        "type": "github"
+        "lastModified": 1793822740,
+        "narHash": "sha256-JEokMvdxkKBWG93HrnCb6JPa+SRwmcDzhlIUAi9zwwg=",
+        "ref": "refs/heads/master",
+        "rev": "158a2d74d1a7eaea6ec9c0aae86c92114ab0e040",
+        "revCount": 1497,
+        "type": "git",
+        "url": "git://idimitrov.dev/configuration.nix"
       },
       "original": {
-        "owner": "ivandimitrov8080",
-        "repo": "configuration.nix",
-        "type": "github"
+        "type": "git",
+        "url": "git://idimitrov.dev/configuration.nix"
       }
     },
     "crane": {
@@ -247,16 +247,16 @@
       "locked": {
         "lastModified": 1793726008,
         "narHash": "sha256-jQp1wKvbwWdLBASTXkSi/VYmDJ5AbBi1WvcMt9HWJC8=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
+        "ref": "nixos-unstable",
         "rev": "1d060086d60cb76a40cf37109f979d88a5bd6396",
-        "type": "github"
+        "revCount": 1107793,
+        "type": "git",
+        "url": "git://idimitrov.dev/nixpkgs"
       },
       "original": {
-        "owner": "NixOS",
         "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
+        "type": "git",
+        "url": "git://idimitrov.dev/nixpkgs"
       }
     },
     "root": {

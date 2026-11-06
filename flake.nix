@@ -1,7 +1,7 @@
 {
   inputs = {
     configuration.url = "git://idimitrov.dev/configuration.nix";
-    nixpkgs.url = "git://idimitrov.dev/nixpkgs/nixos-unstable";
+    nixpkgs.url = "git://idimitrov.dev/nixpkgs?ref=nixos-unstable";
     catppuccin = {
       url = "github:catppuccin/nix";
       inputs.nixpkgs.follows = "nixpkgs";

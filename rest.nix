@@ -117,4 +117,15 @@
     };
   };
   programs.java.enable = true;
+  services = {
+    searx = {
+      enable = true;
+      settings = {
+        server.port = 8080;
+        server.bind_address = "0.0.0.0";
+        server.secret_key = "very_very_s3cr3t";
+        search.formats = [ "json" "html" ];
+      };
+    };
+  };
 }
