@@ -10,6 +10,15 @@
 ;; Telega inherits `browse-url-handlers', which media-playback populates.
 (require 'media-playback)
 
+(defun my/telega-root-goto-first-chat (&rest _)
+  "Move point to the first chat in the telega root buffer."
+  (let ((root (telega-root--buffer)))
+    (when (buffer-live-p root)
+      (with-current-buffer root
+        (goto-char (point-min))
+        (ignore-errors
+          (telega-root-next-match-p 'is-known 1))))))
+
 (defun messaging-init ()
   "Configure mail and messaging."
   (require 'notmuch)
@@ -51,6 +60,7 @@
   (add-hook 'telega-load-hook 'telega-autoplay-mode)
   (add-hook 'telega-chat-mode-hook 'telega-completions-setup-capf)
   (add-hook 'telega-chat-mode-hook #'company-dictionary-mode)
+  (add-hook 'telega-chats-fetched-hook #'my/telega-root-goto-first-chat)
 
   (require 'telega))
 
