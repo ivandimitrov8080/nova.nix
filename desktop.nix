@@ -52,6 +52,7 @@
     git.enable = true;
     git.settings.core.excludesFile = "${config.home.homeDirectory}/.gitignore";
     gpg.enable = true;
+    gpg.package = pkgs.sequoia-chameleon-gnupg;
     imv.enable = true;
     kitty.enable = true;
     mpv.enable = true;
