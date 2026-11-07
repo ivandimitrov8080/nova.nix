@@ -27,7 +27,7 @@
         org-default-notes-file (concat org-directory "/notes.org")
         org-hide-emphasis-markers t
         org-pretty-entities t
-        org-pretty-entities-include-sub-superscripts t
+        org-pretty-entities-include-sub-superscripts nil
         org-ellipsis "  ...")
 
   (add-to-list 'org-agenda-files (concat org-directory "/notes.org"))
