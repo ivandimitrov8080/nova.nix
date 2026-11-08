@@ -62,7 +62,8 @@
   (add-hook 'telega-chat-mode-hook #'company-dictionary-mode)
   (add-hook 'telega-chats-fetched-hook #'telega-root-goto-first-chat)
 
-  (require 'telega))
+  (require 'telega)
+  (require 'ement))
 
 (unless noninteractive
   (messaging-init))

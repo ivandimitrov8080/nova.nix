@@ -2,6 +2,7 @@
   trivialBuild,
   notmuch,
   telega,
+  ement,
   code-intelligence,
   pass-integration,
   media-playback,
@@ -15,6 +16,7 @@ trivialBuild {
   packageRequires = [
     notmuch
     telega
+    ement
     code-intelligence
     pass-integration
     media-playback
