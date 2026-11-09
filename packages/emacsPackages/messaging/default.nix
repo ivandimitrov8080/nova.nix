@@ -24,7 +24,6 @@ trivialBuild {
   propagatedUserEnvPkgs = [
     pkgs.notmuch
     pkgs.msmtp
-    pkgs.gnupg
     pkgs.libwebp
   ];
 }
