@@ -69,7 +69,9 @@
   (add-hook 'telega-chats-fetched-hook #'telega-root-goto-first-chat)
 
   (require 'telega)
-  (require 'ement))
+  (require 'ement)
+  (setopt ement-room-images t)
+  (ement-notifications-mode))
 
 (unless noninteractive
   (messaging-init))
