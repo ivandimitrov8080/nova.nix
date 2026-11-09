@@ -19,6 +19,12 @@
         (ignore-errors
           (telega-root-next-match-p 'is-known 1))))))
 
+(defun ement ()
+  "Connect to ement."
+  (interactive)
+  (ement-connect :user-id "@ivan:idimitrov.dev"
+                 :password (password-store-get "soc/matrix.idimitrov.dev/ivan")))
+
 (defun messaging-init ()
   "Configure mail and messaging."
   (require 'notmuch)
