@@ -59,15 +59,6 @@
   (projectile-mode +1)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   (add-to-list 'projectile-project-root-files "flake.nix")
-  (add-hook 'projectile-after-switch-project-hook
-            (lambda ()
-              (gptel-mcp-connect '("filesystem"))
-              (let ((root (projectile-project-root)))
-                (unless (seq-some (lambda (r)
-                                    (file-equal-p root
-                                                  (if (stringp r) r (plist-get r :path))))
-                                  (mcp-get-roots "filesystem"))
-                  (mcp-add-root "filesystem" root)))))
 
   (global-tree-sitter-mode)
   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
