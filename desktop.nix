@@ -59,6 +59,7 @@
     mpv.config = {
       save-position-on-quit = "yes";
     };
+    visidata.enable = true;
     nix-index.enable = true;
     password-store.enable = true;
     rofi.enable = true;
