@@ -31,7 +31,8 @@
   (setq notmuch-crypto-process-mime t
         notmuch-hello-auto-refresh t
         notmuch-saved-searches '((:name "inbox" :query "tag:inbox" :key "i")
-                                 (:name "unread" :query "tag:unread" :key "u")))
+                                 (:name "unread" :query "tag:unread" :key "u"))
+        notmuch-mua-cite-function (lambda () (delete-region (point) (mark))))
   (setq mail-interactive t
         send-mail-function 'sendmail-send-it
         sendmail-program "msmtp"
@@ -68,10 +69,7 @@
   (add-hook 'telega-chat-mode-hook #'company-dictionary-mode)
   (add-hook 'telega-chats-fetched-hook #'telega-root-goto-first-chat)
 
-  (require 'telega)
-  (require 'ement)
-  (setopt ement-room-images t)
-  (ement-notifications-mode))
+  (require 'telega))
 
 (unless noninteractive
   (messaging-init))
