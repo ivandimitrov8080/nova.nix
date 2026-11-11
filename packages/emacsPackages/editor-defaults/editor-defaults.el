@@ -30,7 +30,8 @@
    vc-follow-symlinks t
    dired-listing-switches "-laB"
    dired-ls-sorting-switches "-laB"
-   initial-buffer-choice "~/org/sticky.org")
+   initial-buffer-choice "~/org/sticky.org"
+   auth-sources '("~/.authinfo.gpg"))
 
   (require 'savehist)
   (savehist-mode)

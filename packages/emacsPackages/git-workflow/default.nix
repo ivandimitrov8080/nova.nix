@@ -1,6 +1,7 @@
 {
   trivialBuild,
   magit,
+  forge,
   diff-hl,
   pkgs,
   ...
@@ -11,6 +12,7 @@ trivialBuild {
   src = ./git-workflow.el;
   packageRequires = [
     magit
+    forge
     diff-hl
   ];
   propagatedUserEnvPkgs = [ pkgs.git ];

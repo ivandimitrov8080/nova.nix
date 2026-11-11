@@ -12,7 +12,10 @@
   "Configure Git tooling."
   (global-set-key (kbd "C-x g") 'magit-status)
   (global-diff-hl-mode)
-  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
+  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
+  (with-eval-after-load 'magit
+    (require 'forge))
+  )
 
 (unless noninteractive
   (git-workflow-init))

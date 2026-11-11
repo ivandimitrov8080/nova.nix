@@ -34,6 +34,7 @@
           settings = {
             user.name = "Ivan Kirilov Dimitrov";
             user.email = "ivan@idimitrov.dev";
+            github.user = "ivandimitrov8080";
           };
           signing.key = "ED7A E641 69C1 DB37 F48D  68A7 1C27 6C0A 3909 B508";
         };
