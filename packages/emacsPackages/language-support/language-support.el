@@ -50,6 +50,8 @@
   (add-hook 'typst-ts-mode-hook 'eglot-ensure)
   (add-hook 'rust-ts-mode-hook 'eglot-ensure)
   (add-hook 'python-ts-mode-hook 'eglot-ensure)
+  (add-hook 'toml-ts-mode 'eglot-ensure)
+  (add-hook 'agda2-mode 'eglot-ensure)
   (add-to-list 'eglot-server-programs '(nix-ts-mode . ("nixd")))
   (add-to-list 'eglot-server-programs '(elm-mode . ("elm-language-server")))
   (add-to-list 'eglot-server-programs '(haskell-ts-mode . ("haskell-language-server-wrapper" "--lsp")))
