@@ -45,6 +45,7 @@ trivialBuild {
     pkgs.vscode-css-languageserver
     pkgs.nushell
     pkgs.tinymist
+    pkgs.taplo
     pkgs.typst
     pkgs.rust-analyzer
     pkgs.pyright

@@ -22,37 +22,24 @@
   "Configure language modes and their Eglot servers."
   (add-to-list 'auto-mode-alist '("\\.drv\\'" . nix-drv-mode))
   (add-to-list 'auto-mode-alist '("\\.nix\\'" . nix-ts-mode))
-
   (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-ts-mode))
-
   (add-to-list 'auto-mode-alist '("\\.elm\\'" . elm-mode))
-  (setq elm-format-on-save t)
-
   (add-to-list 'auto-mode-alist '("\\.hs\\'" . haskell-ts-mode))
-  (setq haskell-ts-prettify-symbols t
-        haskell-ts-prettify-words t)
-  (add-hook 'haskell-ts-mode-hook 'prettify-symbols-mode)
-
   (add-to-list 'auto-mode-alist '("\\.html?\\'" . html-ts-mode))
   (add-to-list 'auto-mode-alist '("\\.css\\'" . css-ts-mode))
   (add-to-list 'auto-mode-alist '("\\.py\\'" . python-ts-mode))
-  (add-hook 'html-ts-mode-hook 'company-mode)
-
   (add-to-list 'auto-mode-alist '("\\.nu\\'" . nushell-mode))
-
   (add-to-list 'auto-mode-alist '("\\.js\\'" . js-ts-mode))
   (add-to-list 'auto-mode-alist '("\\.json\\'" . json-ts-mode))
-
   (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
   (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-
   (add-to-list 'auto-mode-alist '("\\.yaml\\'" . yaml-ts-mode))
   (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-ts-mode))
-
   (add-to-list 'auto-mode-alist '("\\.typ\\'" . typst-ts-mode))
-
   (add-to-list 'auto-mode-alist '("\\.agda\\'" . agda2-mode))
-
+  (add-to-list 'auto-mode-alist '("\\.toml\\'" . toml-ts-mode))
+  (add-hook 'html-ts-mode-hook 'company-mode)
+  (add-hook 'haskell-ts-mode-hook 'prettify-symbols-mode)
   (add-hook 'nix-ts-mode-hook 'eglot-ensure)
   (add-hook 'elm-mode-hook 'eglot-ensure)
   (add-hook 'haskell-ts-mode-hook 'eglot-ensure)
@@ -63,7 +50,6 @@
   (add-hook 'typst-ts-mode-hook 'eglot-ensure)
   (add-hook 'rust-ts-mode-hook 'eglot-ensure)
   (add-hook 'python-ts-mode-hook 'eglot-ensure)
-  (setq eglot-autoshutdown t)
   (add-to-list 'eglot-server-programs '(nix-ts-mode . ("nixd")))
   (add-to-list 'eglot-server-programs '(elm-mode . ("elm-language-server")))
   (add-to-list 'eglot-server-programs '(haskell-ts-mode . ("haskell-language-server-wrapper" "--lsp")))
@@ -73,7 +59,13 @@
   (add-to-list 'eglot-server-programs '(nushell-mode . ("nu" "--lsp")))
   (add-to-list 'eglot-server-programs '(typst-ts-mode . ("tinymist")))
   (add-to-list 'eglot-server-programs '(rust-ts-mode . ("rust-analyzer")))
-  (add-to-list 'eglot-server-programs '(python-ts-mode . ("pyright-langserver" "--stdio"))))
+  (add-to-list 'eglot-server-programs '(python-ts-mode . ("pyright-langserver" "--stdio")))
+  (add-to-list 'eglot-server-programs '(toml-ts-mode . ("taplo" "lsp" "stdio")))
+  
+  (setq haskell-ts-prettify-symbols t
+        haskell-ts-prettify-words t
+        elm-format-on-save t
+        eglot-autoshutdown t))
 
 (unless noninteractive
   (language-support-init))
