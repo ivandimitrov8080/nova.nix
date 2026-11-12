@@ -17,7 +17,7 @@
 (defvar web-search-history nil
   "History of queries entered with `web-search'.")
 
-(defvar-keymap web-search-results-mode-map          ; Emacs 29+; else make-sparse-keymap
+(defvar-keymap web-search-results-mode-map
   :parent special-mode-map
   "RET"       #'push-button
   "n"         #'forward-button
@@ -100,8 +100,7 @@
   "Search the web for QUERY."
   (interactive
    (list (read-string "Search query: " nil 'web-search-history)))
-  (let* ((text (buffer-substring-no-properties (region-beginning) (region-end)))
-         (url "http://localhost:8080/search"))
+  (let* ((url "http://localhost:8080/search"))
     (request url
       :method "POST"
       :data (format "q=%s&format=json" query)
