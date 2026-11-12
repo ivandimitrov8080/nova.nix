@@ -55,6 +55,10 @@
   (emms-select-by-name (emms-read-last))
   (emms))
 
+(defun browse-url-github (url &rest _args)
+  "Open github file urls in Emacs URL."
+  (browse-url-emacs (replace-regexp-in-string "github.com" "raw.githubusercontent.com" (replace-regexp-in-string "blob/" "" url))))
+
 (defun media-playback-init ()
   "Configure media playback."
   (emms-all)
@@ -68,7 +72,8 @@
   (setq browse-url-handlers
         `(("youtube\\.com/watch\\?v=.*" . browse-url-emms)
           ("youtube\\.com/shorts/.*" . browse-url-emms)
-          ("youtu\\.be/.*" . browse-url-emms)))
+          ("youtu\\.be/.*" . browse-url-emms)
+          ("github\\.com/.*blob.*" . browse-url-github)))
 
   (setq transmission-refresh-interval 1
         transmission-refresh-modes '(transmission-mode
