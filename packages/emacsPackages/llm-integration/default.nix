@@ -24,20 +24,5 @@ trivialBuild {
     pkgs.mcp-server-git
     pkgs.open-websearch
     pkgs.curl
-    (pkgs.python3.withPackages (
-      ps: with ps; [
-        epc
-        networkx
-        pygments
-        grep-ast
-        diskcache
-        tiktoken
-        tqdm
-        gitignore-parser
-        scipy
-        litellm
-        orjson
-      ]
-    ))
   ];
 }

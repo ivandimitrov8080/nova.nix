@@ -66,5 +66,20 @@ trivialBuild {
         tar
       ]
     ))
+    (pkgs.python3.withPackages (
+      ps: with ps; [
+        epc
+        networkx
+        pygments
+        grep-ast
+        diskcache
+        tiktoken
+        tqdm
+        gitignore-parser
+        scipy
+        litellm
+        orjson
+      ]
+    ))
   ];
 }
