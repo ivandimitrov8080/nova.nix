@@ -23,7 +23,9 @@
   "Connect to ement."
   (interactive)
   (ement-connect :user-id "@ivan:idimitrov.dev"
-                 :password (password-store-get "soc/matrix.idimitrov.dev/ivan")))
+                 :password (password-store-get "soc/matrix.idimitrov.dev/ivan"))
+  (ement-room-self-insert-mode t)
+  (setq ement-room-send-message-filter 'ement-room-send-org-filter))
 
 (defun messaging-init ()
   "Configure mail and messaging."
