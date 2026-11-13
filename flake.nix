@@ -72,6 +72,7 @@
       nixosConfigurations.default = host;
       nixosConfigurations.nova = host;
       packages.x86_64-linux.emacs = pkgs.emacs-custom;
+      packages.x86_64-linux.neomacs = pkgs.neomacs;
       packages.x86_64-linux.polars = pkgs.nushellPlugins.polars;
     };
 }
