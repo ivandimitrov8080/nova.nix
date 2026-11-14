@@ -5,6 +5,7 @@
   smartparens,
   undo-tree,
   rainbow-delimiters,
+  elsqlite,
   aggressive-indent,
   ...
 }:
@@ -17,6 +18,7 @@ trivialBuild {
     expand-region
     smartparens
     undo-tree
+    elsqlite
     rainbow-delimiters
     aggressive-indent
   ];

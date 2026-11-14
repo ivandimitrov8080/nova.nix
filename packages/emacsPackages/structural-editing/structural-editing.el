@@ -13,6 +13,7 @@
 (require 'undo-tree)
 (require 'rainbow-delimiters)
 (require 'aggressive-indent)
+(require 'elsqlite)
 
 (defun structural-editing-init ()
   "Configure navigation and structural editing."
@@ -33,7 +34,8 @@
   (setq undo-tree-auto-save-history t)
 
   (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
-  (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode))
+  (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
+  (elsqlite-enable-auto-open))
 
 (unless noninteractive
   (structural-editing-init))
