@@ -5,6 +5,14 @@
   ...
 }:
 {
+  nix.settings = {
+    extra-system-features = [ "uid-range" ];
+    experimental-features = [
+      "auto-allocate-uids"
+      "cgroups"
+    ];
+    auto-allocate-uids = true;
+  };
   home-manager = {
     backupFileExtension = "bak";
     useUserPackages = true;
@@ -125,7 +133,10 @@
         server.port = 8080;
         server.bind_address = "0.0.0.0";
         server.secret_key = "very_very_s3cr3t";
-        search.formats = [ "json" "html" ];
+        search.formats = [
+          "json"
+          "html"
+        ];
       };
     };
   };
