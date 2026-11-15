@@ -3,11 +3,10 @@
 }:
 {
   pkgs,
-  config,
   ...
 }:
 {
-  imports = [ ./peers.nix ];
+  imports = [ ./wireguard.nix ];
 
   meta = {
     host = {
@@ -24,14 +23,8 @@
       };
     };
 
-    wireguard = {
-      enable = true;
-      self = "nova";
-      address = "10.0.0.2/24";
-    };
-
     dns = {
-      servers = [ config.meta.wireguard.peers.hub.ip ];
+      servers = [ "10.0.0.1" ];
       egress.restrict = true;
     };
   };
