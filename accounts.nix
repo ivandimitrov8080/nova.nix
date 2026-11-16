@@ -153,35 +153,45 @@
       enable = true;
       extraConfig =
         let
-          spammers = [
-            "linkedin.com"
-            "grafana.com"
-            "bg.econcast.net"
-            "ticketportal.cz"
-            "uber.com"
-            "brightdata.com"
-            "cal.com"
-            "rkc.edu"
-            "office1.bg"
-            "github.com"
-            "snowflake.com"
-            "proxify.io"
-            "toptal.com"
-            "onetravelspecials.com"
-            "redglobal.com"
-            "b4b-inkasso.com"
-            "agoda.com"
-            "vanillaforums.email"
-            "torre.ai"
-            "audn.ai"
-          ];
+          spammers = {
+            domains = [
+              "linkedin.com"
+              "grafana.com"
+              "bg.econcast.net"
+              "ticketportal.cz"
+              "uber.com"
+              "brightdata.com"
+              "cal.com"
+              "rkc.edu"
+              "office1.bg"
+              "github.com"
+              "snowflake.com"
+              "proxify.io"
+              "toptal.com"
+              "onetravelspecials.com"
+              "redglobal.com"
+              "b4b-inkasso.com"
+              "agoda.com"
+              "vanillaforums.email"
+              "torre.ai"
+              "audn.ai"
+            ];
+            emails = [
+              "justin.ho.1124@gmail.com"
+            ];
+          };
         in
         ''
           [SpamFilter]
 
           [Filter.0]
           message = Delete all messages from spammers
-          query = ${builtins.concatStringsSep " " (map (x: "from:*@${x}") spammers)}
+          query = ${builtins.concatStringsSep " " (map (x: "from:*@${x}") spammers.domains)}
+          tags = +spam;-inbox;-unread
+
+          [Filter.1]
+          message = Delete all messages from spammers
+          query = ${builtins.concatStringsSep " " (map (x: "from:${x}") spammers.emails)}
           tags = +spam;-inbox;-unread
 
           [InboxFilter]
