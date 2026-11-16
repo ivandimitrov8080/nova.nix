@@ -6,6 +6,7 @@
 ;;; Code:
 
 (require 'pass)
+(require 'sops)
 
 (defvar password-store-cache (make-hash-table :test #'equal)
   "Runtime cache of password-store entries.")
@@ -23,7 +24,8 @@ PROMPT is the full text comint would otherwise show in the minibuffer."
 
 (defun pass-integration-init ()
   "Route comint password prompts through the pass store."
-  (setq-default comint-password-function #'comint-password-store-fun))
+  (setq-default comint-password-function #'comint-password-store-fun)
+  (global-sops-mode))
 
 (unless noninteractive
   (pass-integration-init))
