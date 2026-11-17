@@ -92,12 +92,12 @@
             key = "ED7A E641 69C1 DB37 F48D  68A7 1C27 6C0A 3909 B508";
           };
           smtp = {
-            host = "mail.idimitrov.dev";
+            host = "idimitrov.dev";
             port = 465;
             authentication = "login";
           };
           imap = {
-            host = "mail.idimitrov.dev";
+            host = "idimitrov.dev";
             authentication = "login";
           };
           notmuch.enable = true;
