@@ -12,6 +12,7 @@
       "cgroups"
     ];
     auto-allocate-uids = true;
+    extra-sandbox-paths = [ "/dev/net" ];
   };
   home-manager = {
     backupFileExtension = "bak";
