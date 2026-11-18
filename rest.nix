@@ -6,7 +6,10 @@
 }:
 {
   nix.settings = {
-    extra-system-features = [ "uid-range" ];
+    extra-system-features = [
+      "uid-range"
+      "devnet"
+    ];
     experimental-features = [
       "auto-allocate-uids"
       "cgroups"
