@@ -738,11 +738,11 @@
         "uv2nix": "uv2nix_2"
       },
       "locked": {
-        "lastModified": 1795370285,
-        "narHash": "sha256-Y3C8/EVn+8TolwaU77h8BPHyECmph9Xgjy1yqMrHX6I=",
+        "lastModified": 1795374961,
+        "narHash": "sha256-zG3LHHhloUXMGTKmDcWELr9uoY+8R6teEVhTh89k0lg=",
         "owner": "ivandimitrov8080",
         "repo": "web4ai",
-        "rev": "61695fbdfe061f5a57ac855f8b7c114bf2d1b8f0",
+        "rev": "cc4743a3456d1a0a83555fc1d4334fdc3dd29b08",
         "type": "github"
       },
       "original": {
