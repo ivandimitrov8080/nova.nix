@@ -87,11 +87,6 @@
     clipse.enable = true;
     pass-secret-service.enable = true;
     wpaperd.enable = true;
-    gammastep = {
-      enable = true;
-      latitude = 50.0;
-      longitude = 14.41;
-    };
     emacs = {
       enable = true;
       package = pkgs.emacs-custom;
