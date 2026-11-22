@@ -37,8 +37,8 @@
         inherit system;
         overlays = [
           inputs.emacs-overlay.overlays.default
-          novaOverlay
           inputs.configuration.overlays.default
+          novaOverlay
         ];
       };
 
@@ -55,8 +55,8 @@
               hostPlatform = "x86_64-linux";
               overlays = [
                 inputs.emacs-overlay.overlays.default
-                novaOverlay
                 inputs.configuration.overlays.default
+                novaOverlay
               ];
             };
             nix.registry = {
