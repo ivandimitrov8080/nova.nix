@@ -96,8 +96,19 @@
       startWithUserSession = "graphical";
     };
   };
-  systemd.user.services.emacs.Service.ExecStartPost = [
-    "-${pkgs.emacs-custom}/bin/emacsclient --create-frame --no-wait"
-  ];
+  systemd.user.services = {
+    emacs.Service.ExecStartPost = [
+      "-${pkgs.emacs-custom}/bin/emacsclient --create-frame --no-wait"
+    ];
+    web4ai = {
+      Install = {
+        WantedBy = [ "default.target" ];
+      };
+      Service = {
+        Type = "exec";
+        ExecStart = [ "${pkgs.web4ai}/bin/web4ai --port=5353 --tools=read" ];
+      };
+    };
+  };
   wayland.windowManager.sway.enable = true;
 }

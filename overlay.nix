@@ -11,6 +11,7 @@ let
 in
 {
   which-key = callPackage ./packages/which-key { };
+  web4ai = inputs.web4ai.packages.${prev.stdenv.hostPlatform.system}.default;
   emacs-custom = callPackage emacsSrc { inherit inputs; };
   neomacs = callPackage emacsSrc {
     inherit inputs;
