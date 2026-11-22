@@ -1,0 +1,18 @@
+diff --git a/types/scene/wlr_scene.c b/types/scene/wlr_scene.c
+index 94b4ff7..2d721ba 100644
+--- a/types/scene/wlr_scene.c
++++ b/types/scene/wlr_scene.c
+@@ -3539,7 +3539,12 @@ bool wlr_scene_output_build_state(struct wlr_scene_output *scene_output,
+ 
+ 	wlr_render_pass_add_rect(render_pass, &(struct wlr_render_rect_options){
+ 		.box = { .width = buffer->width, .height = buffer->height },
+-		.color = { .r = 0, .g = 0, .b = 0, .a = 1 },
++		.color = {
++			.r = 0x1e / 255.f,
++			.g = 0x1e / 255.f,
++			.b = 0x2e / 255.f,
++			.a = 1.0f,
++		},
+ 		.clip = &background,
+ 	});
+ 	pixman_region32_fini(&background);
