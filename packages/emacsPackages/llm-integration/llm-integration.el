@@ -30,7 +30,8 @@
   "Configure gptel and MCP."
   (setq gptel-use-tools t
         gptel-default-mode 'org-mode
-        mcp-hub-servers '(("web" . (:url "http://localhost:5353/mcp"))))
+        mcp-hub-servers '(("web" . (:url "http://localhost:5353/mcp")))
+        jsonrpc-default-request-timeout 120)
   (gptel-make-deepseek "DeepSeek"
     :stream t
     :key (lambda () (password-store-get-cached "dev/deepseek.com/key")))
