@@ -48,4 +48,7 @@ in
   wlroots_0_20 = prev.wlroots_0_20.overrideAttrs (old: {
     patches = ./wlroots.patch;
   });
+  wpaperd = prev.wpaperd.overrideAttrs (old: {
+    patches = ./wpaperd.patch;
+  });
 }

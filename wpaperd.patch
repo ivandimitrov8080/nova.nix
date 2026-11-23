@@ -1,0 +1,13 @@
+diff --git a/daemon/src/render/renderer.rs b/daemon/src/render/renderer.rs
+index 1e29f0d..bac6b6b 100644
+--- a/daemon/src/render/renderer.rs
++++ b/daemon/src/render/renderer.rs
+@@ -22,7 +22,7 @@ use crate::{
+ use super::{gl, wallpaper::Wallpaper, Transition};
+ 
+ fn black_image() -> RgbaImage {
+-    RgbaImage::from_raw(1, 1, vec![0, 0, 0, 255]).unwrap()
++    RgbaImage::from_raw(1, 1, vec![30, 30, 46, 255]).unwrap()
+ }
+ 
+ #[derive(Debug)]

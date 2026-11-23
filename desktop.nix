@@ -87,6 +87,14 @@
     clipse.enable = true;
     pass-secret-service.enable = true;
     wpaperd.enable = true;
+    wpaperd.settings = {
+      default = {
+        path = "${config.xdg.userDirs.pictures}/bg";
+        duration = "10m";
+        initial-transition = true;
+        transition-time = 2000;
+      };
+    };
     emacs = {
       enable = true;
       package = pkgs.emacs-custom;
@@ -97,6 +105,7 @@
     };
   };
   systemd.user.services = {
+    wpaperd.Service.ExecStartPre = "${pkgs.uutils-coreutils-noprefix}/bin/sleep 1";
     emacs.Service.ExecStartPost = [
       "-${pkgs.emacs-custom}/bin/emacsclient --create-frame --no-wait"
     ];
