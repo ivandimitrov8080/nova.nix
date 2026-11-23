@@ -42,6 +42,9 @@ in
       }
     );
   docs-nixos = docsNixos;
+  scenefx = prev.scenefx.overrideAttrs (old: {
+    patches = ./scenefx.patch;
+  });
   wlroots_0_20 = prev.wlroots_0_20.overrideAttrs (old: {
     patches = ./wlroots.patch;
   });
