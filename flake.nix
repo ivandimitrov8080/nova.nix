@@ -18,10 +18,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    web4ai = {
-      url = "github:ivandimitrov8080/web4ai";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    web4ai.url = "github:ivandimitrov8080/web4ai";
     neomacs.url = "github:eval-exec/neomacs";
   };
   outputs =
