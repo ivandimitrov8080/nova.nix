@@ -103,7 +103,7 @@
   (let* ((url "http://localhost:8080/search"))
     (request url
       :method "POST"
-      :data (format "q=%s&format=json" query)
+      :data (format "format=json&q=%s" query)
       :parser 'json-read
       :success (cl-function
                 (lambda (&key data &allow-other-keys)
