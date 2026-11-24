@@ -22,9 +22,6 @@
     (auto-save-mode -1)
     (undo-tree-mode -1)
     (flycheck-mode -1)
-    (setq-local gptel-model 'deepseek-v4-flash
-                gptel-backend (gptel-get-backend "DeepSeek")
-                buffer-save-without-query t)
     (add-to-list 'gptel-post-response-functions
                  (lambda (&rest _) (when (buffer-modified-p) (save-buffer)))))
   )
@@ -46,7 +43,10 @@
 
   (add-hook 'after-init-hook
             (lambda ()
-              (gptel-mcp-connect '("web")))))
+              (gptel-mcp-connect
+               '(("web" "fetch" "search")))
+              ))
+  )
 
 (unless noninteractive
   (llm-integration-init))

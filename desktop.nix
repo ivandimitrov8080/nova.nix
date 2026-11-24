@@ -115,7 +115,7 @@
       };
       Service = {
         Type = "exec";
-        ExecStart = [ "${pkgs.web4ai}/bin/web4ai --port=5353 --tools=read --stateless" ];
+        ExecStart = [ "${pkgs.web4ai}/bin/web4ai --port=5353 --stateless" ];
       };
     };
   };

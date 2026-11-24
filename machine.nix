@@ -87,6 +87,7 @@ in
             { app_id = "^scratchy$"; }
           ];
           "2" = [ { app_id = "^org.ladybird.Ladybird$"; } ];
+          "9" = [ { app_id = "^chromium-browser$"; } ];
         };
         input = {
           "*" = {
