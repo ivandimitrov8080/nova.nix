@@ -19,6 +19,7 @@
   (let ((default-directory gptel-sessions-dir))
     (call-interactively #'find-file)
     (gptel-mode 1)
+    (auto-save-mode -1)
     (setq-local gptel-model 'deepseek-v4-flash
                 gptel-backend (gptel-get-backend "DeepSeek")
                 buffer-save-without-query t)
