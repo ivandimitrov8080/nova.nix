@@ -31,15 +31,15 @@
 
 (defun llm-integration-init ()
   "Configure gptel and MCP."
+  (gptel-make-deepseek "DeepSeek"
+    :stream t
+    :key (lambda () (password-store-get-cached "dev/deepseek.com/key")))
   (setq gptel-backend (gptel-get-backend "DeepSeek")
         gptel-model 'deepseek-v4-flash
         gptel-use-tools t
         gptel-default-mode 'org-mode
         mcp-hub-servers '(("web" . (:url "http://localhost:5353/mcp")))
         jsonrpc-default-request-timeout 120)
-  (gptel-make-deepseek "DeepSeek"
-    :stream t
-    :key (lambda () (password-store-get-cached "dev/deepseek.com/key")))
   (add-hook 'gptel-mode-hook 'company-mode)
   (setf (alist-get 'default gptel-directives)
         "You write about the conceptual ideas behind questions rather than explaining the details unless asked. Your answers are short and to the point without adding extra information while keeping them full. Respond in valid Org Mode syntax avoiding tables.")
