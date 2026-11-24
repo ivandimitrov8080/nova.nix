@@ -31,7 +31,9 @@
 
 (defun llm-integration-init ()
   "Configure gptel and MCP."
-  (setq gptel-use-tools t
+  (setq gptel-backend (gptel-get-backend "DeepSeek")
+        gptel-model 'deepseek-v4-flash
+        gptel-use-tools t
         gptel-default-mode 'org-mode
         mcp-hub-servers '(("web" . (:url "http://localhost:5353/mcp")))
         jsonrpc-default-request-timeout 120)
