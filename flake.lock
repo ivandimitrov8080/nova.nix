@@ -22,11 +22,11 @@
     },
     "configuration": {
       "locked": {
-        "lastModified": 1794830955,
-        "narHash": "sha256-E2+ssJROM/syCdZe+1JUqPrWGMgTTZUOZy+CPO0a7oc=",
+        "lastModified": 1795332568,
+        "narHash": "sha256-XA73Bu4wnDjQCM06C6dgUdg+UvUD876yLoO6hGAInuY=",
         "ref": "refs/heads/master",
-        "rev": "cae2e27bdf89bfa43dfaa5d35b0eb69c12cbe8f2",
-        "revCount": 1505,
+        "rev": "c98942272d5ea027d88bf916796ee81111d3b4c0",
+        "revCount": 1507,
         "type": "git",
         "url": "git://idimitrov.dev/configuration.nix"
       },
@@ -125,11 +125,11 @@
         "nixpkgs-stable": "nixpkgs-stable"
       },
       "locked": {
-        "lastModified": 1794983981,
-        "narHash": "sha256-DA/V0QZSinJ5Tbzx4cajBPjhfWhH/lwPXQ+j9HWoxR4=",
+        "lastModified": 1795512236,
+        "narHash": "sha256-Ftn28kkbthBQMg5PiFz1UmxOqAljlRHjOIvUppoSdmY=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "f2fb15514bcc68a8d6ab898a7feec5098c1b33df",
+        "rev": "b56455571badeea971266b6fa8589aff4e5711df",
         "type": "github"
       },
       "original": {
@@ -248,11 +248,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1794963576,
-        "narHash": "sha256-+CPrP74GDJ63f7bgEFC9Av4hbxc7K9WUNv1ZVRifRe8=",
+        "lastModified": 1795366757,
+        "narHash": "sha256-Tp4Kh4R7ID1f2mMCDlb2PiFQ/DZZsnXB2u2juWN+TT4=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "2b13c9cb3aa20653e6f8ee0b7f8331a53ea9b0a9",
+        "rev": "3b8140d21fa0a70b1b38c2ed29853dfe686234a6",
         "type": "github"
       },
       "original": {
@@ -292,11 +292,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1795008956,
-        "narHash": "sha256-HPSNQ90WuZDVqJWd2tZsn1OQ4badwmndE0VUpSGEazw=",
+        "lastModified": 1795509841,
+        "narHash": "sha256-z1ys5dovmYSxAaA3it3RLV60I8KUSNSZOA5xMEpAQVg=",
         "owner": "eval-exec",
         "repo": "neomacs",
-        "rev": "20d4606f08d71b9dfca63bd4cf81585e52efe95a",
+        "rev": "9cd707ae0ffb9f92e28d46a8b28aa46160338495",
         "type": "github"
       },
       "original": {
@@ -415,11 +415,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1794872590,
-        "narHash": "sha256-E+XLAfnC7+bdr4qlEgRv6cdGmiqTU5oeFNKCha7epqQ=",
+        "lastModified": 1795370043,
+        "narHash": "sha256-s/0jq8usZtLVOolYBwmyUmd3JsfAu7w3FU+a0dgMqSY=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "f68407657ad294471eb4b2e65d193df26edf729f",
+        "rev": "0dc498bfe49baeb18b0f9891e800b53bb2603193",
         "type": "github"
       },
       "original": {
@@ -447,11 +447,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1794890597,
-        "narHash": "sha256-lME2lHoDHAaSHP3/okgiVoJ0icVEvsQH8LeU3We7tcc=",
+        "lastModified": 1795234589,
+        "narHash": "sha256-f/VVvxf5RsQgWVhUtefoca5ktVg0DA2bnkMOcmSnozo=",
         "ref": "nixos-unstable",
-        "rev": "04906337b6d53e8bb0eaf0470ae9f070a4d4eb55",
-        "revCount": 1122823,
+        "rev": "2786a2a72088ecf32aea5b3ec52099e6a7cff78f",
+        "revCount": 1125864,
         "type": "git",
         "url": "git://idimitrov.dev/nixpkgs"
       },
