@@ -21,6 +21,7 @@
     (gptel-mode 1)
     (auto-save-mode -1)
     (undo-tree-mode -1)
+    (flycheck-mode -1)
     (setq-local gptel-model 'deepseek-v4-flash
                 gptel-backend (gptel-get-backend "DeepSeek")
                 buffer-save-without-query t)
