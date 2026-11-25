@@ -32,11 +32,25 @@
                           (apply-partially #'file-name-concat org-directory)
                           '("inbox.org" "projects.org" "calendar.org"))
         org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "WAITING(w@)" "|" "DONE(d)" "CANCELLED(c@)"))
+        org-todo-keyword-faces '(("NEXT"    . "green")
+                                 ("WAITING" . "orange")
+                                 ("SOMEDAY" . "grey50"))
+        org-tag-alist '((:startgroup)
+                        ("work" . ?w) ("home" . ?h)
+                        (:endgroup)
+                        ("project"    . ?p)
+                        ("subproject" . ?s))
+        org-tags-exclude-from-inheritance '("project" "subproject")
+        org-stuck-projects '("+project" ("NEXT") nil "")
         org-log-done 'time
         org-log-refile 'time
-        org-refile-targets '((org-agenda-files :maxlevel . 3))
+        org-log-into-drawer t
+        org-refile-targets '((org-agenda-files :maxlevel . 6))
+        org-refile-use-outline-path 'file
+        org-outline-path-complete-in-steps nil
+        org-refile-allow-creating-parent-nodes 'confirm
         org-agenda-span 'week
-        org-archive-location (file-name-concat org-directory "archive.org::"))
+        org-archive-location (file-name-concat org-directory "archive.org::* Archived"))
   (setq org-capture-templates
         '(("t" "Task → inbox" entry (file "inbox.org")
            "* TODO %?\n%U\n" :empty-lines 1)
@@ -46,7 +60,15 @@
         '(("n" "Next actions" todo "NEXT")
           ("w" "Waiting for" todo "WAITING")
           ("i" "Inbox — process me" alltodo ""
-           ((org-agenda-files '("~/org/inbox.org"))))))
+           ((org-agenda-files '("~/org/inbox.org"))))
+          ("p" "Projects" tags-todo "project"
+           ((org-agenda-overriding-header "Open projects")))
+          ("R" "Weekly review"
+           ((stuck "")
+            (todo "NEXT")
+            (todo "WAITING")
+            (tags-todo "project")
+            (agenda "" ((org-agenda-span 'week)))))))
   (global-set-key (kbd "C-c c") #'org-capture)
   (global-set-key (kbd "C-c a") #'org-agenda)
 
