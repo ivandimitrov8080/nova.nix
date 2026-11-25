@@ -141,6 +141,12 @@
           "json"
           "html"
         ];
+        engines = [
+          {
+            name = "brave";
+            disabled = true;
+          }
+        ];
       };
     };
   };
