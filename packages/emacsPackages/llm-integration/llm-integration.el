@@ -26,7 +26,7 @@
     (gptel-mode 1)
     (auto-save-mode -1)
     (undo-tree-mode -1)
-    (add-to-list 'gptel-post-response-functions #'deepseek--save-after-response nil t))
+    (add-hook 'gptel-post-response-functions #'deepseek--save-after-response nil t))
   )
 
 (defun llm-integration-init ()

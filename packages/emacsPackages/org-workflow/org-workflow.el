@@ -69,6 +69,8 @@
             (todo "WAITING")
             (tags-todo "project")
             (agenda "" ((org-agenda-span 'week)))))))
+  (add-to-list 'safe-local-eval-forms
+               '(org-match-sparse-tree nil "TODO=\"NEXT\""))
   (global-set-key (kbd "C-c c") #'org-capture)
   (global-set-key (kbd "C-c a") #'org-agenda)
 
