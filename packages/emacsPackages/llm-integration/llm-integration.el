@@ -12,18 +12,22 @@
 (require 'org)
 
 (defvar gptel-sessions-dir (expand-file-name "gptel/" org-directory) "The directory where gptel sessions are saved.")
+(defun deepseek--save-after-response (&rest _)
+  "Save the file after LLM responds.  Used as a hook and discarding arguments."
+  (save-buffer))
 
 (defun deepseek ()
   "Spawn a gptel buffer with deepseek that auto-saves to a file in gptel-sessions-dir."
   (interactive)
   (let ((default-directory gptel-sessions-dir))
     (call-interactively #'find-file)
+    (when (zerop (buffer-size))
+      (insert "* "))
     (gptel-mode 1)
     (auto-save-mode -1)
     (undo-tree-mode -1)
     (flycheck-mode -1)
-    (add-to-list 'gptel-post-response-functions
-                 (lambda (&rest _) (when (buffer-modified-p) (save-buffer)))))
+    (add-to-list 'gptel-post-response-functions #'deepseek--save-after-response nil t))
   )
 
 (defun llm-integration-init ()
