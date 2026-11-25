@@ -111,7 +111,7 @@
     ];
     web4ai = {
       Install = {
-        WantedBy = [ "default.target" ];
+        WantedBy = [ "graphical-session.target" ];
       };
       Service = {
         Type = "exec";
