@@ -47,7 +47,7 @@
 
   (add-hook 'notmuch-message-mode-hook #'company-dictionary-mode)
 
-  (add-hook 'after-init-hook 'global-flycheck-mode)
+  (add-hook 'prog-mode-hook 'flycheck-mode)
   (add-hook 'after-init-hook 'global-flycheck-annotate-mode)
   (global-flycheck-eglot-mode)
   (setq ispell-dictionary "en_GB"
