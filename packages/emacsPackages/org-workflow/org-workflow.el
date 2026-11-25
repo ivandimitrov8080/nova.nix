@@ -8,6 +8,7 @@
 (require 'org)
 (require 'org-capture)
 (require 'org-tempo)
+(require 'org-habit)
 (require 'olivetti)
 (require 'valign)
 (require 'org-modern)
@@ -21,22 +22,33 @@
         org-hide-leading-stars t
         org-src-fontify-natively t
         org-src-tab-acts-natively t
-        org-src-content-indentation 0
-        org-todo-keywords '((sequence "TODO" "|" "DONE" "DELEGATED"))
-        org-log-done 'note
-        org-default-notes-file (concat org-directory "/notes.org")
+        org-src-content-indentation 2
         org-hide-emphasis-markers t
         org-pretty-entities t
         org-pretty-entities-include-sub-superscripts nil
         org-ellipsis "  ...")
 
-  (add-to-list 'org-agenda-files (concat org-directory "/notes.org"))
-
-  (unless (assoc "t" org-capture-templates)
-    (add-to-list 'org-capture-templates
-                 '("t" "Task" entry (file+headline "" "Tasks")
-                   "* TODO %?\n  %u\n  %a")
-                 t))
+  (setq org-agenda-files (mapcar
+                          (apply-partially #'file-name-concat org-directory)
+                          '("inbox.org" "projects.org" "calendar.org"))
+        org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "WAITING(w@)" "|" "DONE(d)" "CANCELLED(c@)"))
+        org-log-done 'time
+        org-log-refile 'time
+        org-refile-targets '((org-agenda-files :maxlevel . 3))
+        org-agenda-span 'week
+        org-archive-location (file-name-concat org-directory "archive.org::"))
+  (setq org-capture-templates
+        '(("t" "Task → inbox" entry (file "inbox.org")
+           "* TODO %?\n%U\n" :empty-lines 1)
+          ("n" "Note → inbox" entry (file "inbox.org")
+           "* %?\n%U\n" :empty-lines 1)))
+  (setq org-agenda-custom-commands
+        '(("n" "Next actions" todo "NEXT")
+          ("w" "Waiting for" todo "WAITING")
+          ("i" "Inbox — process me" alltodo ""
+           ((org-agenda-files '("~/org/inbox.org"))))))
+  (global-set-key (kbd "C-c c") #'org-capture)
+  (global-set-key (kbd "C-c a") #'org-agenda)
 
   (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
   (add-hook 'org-mode-hook #'org-indent-mode)
