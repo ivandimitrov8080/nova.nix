@@ -41,6 +41,24 @@
                                   org-archive-subtree org-archive-to-archive-sibling))
     (advice-add cmd :after #'org-workflow-save-org-buffers)))
 
+(defun org-caldav-insert-parent-rel (&rest _)
+  "Add RELATED-TO;RELTYPE=PARENT from the parent heading's :ID:."
+  (let* ((uid (org-caldav-get-uid))
+         (pid (and uid
+                   (save-window-excursion
+                     (org-id-goto uid)
+                     (let ((p (org-element-property :parent (org-element-at-point))))
+                       (and p (org-element-property :ID p)))))))
+    (when pid
+      (save-excursion
+        (goto-char (point-max))
+        (when (search-backward "END:VTODO" nil t)
+          (beginning-of-line)
+          (let ((eol (if (save-excursion (goto-char (point-min))
+                                         (search-forward "\r\n" (line-end-position) t))
+                         "\r\n" "\n")))
+            (insert "RELATED-TO;RELTYPE=PARENT:" pid eol)))))))
+
 (defun org-workflow-init ()
   "Configure Org mode and friends."
   (setq org-startup-indented t
@@ -94,6 +112,7 @@
         org-caldav-todo-percent-states '((0 "TODO") (10 "NEXT") (50 "WAITING") (100 "DONE"))
         org-icalendar-timezone "Asia/Bangkok"
         org-icalendar-include-todo '("TODO" "NEXT" "WAITING" "DONE"))
+  (advice-add 'org-caldav-put-event :before #'org-caldav-insert-parent-rel)
 
   (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
   (add-hook 'org-mode-hook #'org-indent-mode)
