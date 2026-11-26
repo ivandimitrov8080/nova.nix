@@ -63,7 +63,7 @@
                         ("project"    . ?p)
                         ("subproject" . ?s))
         org-tags-exclude-from-inheritance '("project" "subproject")
-        org-stuck-projects '("+project" ("NEXT") nil "")
+        org-stuck-projects '("+LEVEL=2/-DONE" ("NEXT") nil "")
         org-log-done 'time
         org-log-refile 'time
         org-log-into-drawer t
