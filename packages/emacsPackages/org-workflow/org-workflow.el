@@ -17,6 +17,27 @@
 (require 'markdown-mode)
 (require 'org-caldav)
 
+(defun org-workflow-save-org-buffers (&rest _)
+  "Quietly save all Org buffers.  Safe to call from hooks and advice."
+  (let ((inhibit-message t))
+    (condition-case err
+        (org-save-all-org-buffers)
+      (error (message "org-workflow: save failed: %s" (error-message-string err))))))
+
+(defun org-workflow-auto-save-setup ()
+  "Configure saving orgmode buffers when TODOs change."
+  (add-hook 'org-after-todo-state-change-hook #'org-workflow-save-org-buffers)
+  (add-hook 'org-after-tags-change-hook      #'org-workflow-save-org-buffers)
+  (add-hook 'org-after-note-stored-hook      #'org-workflow-save-org-buffers)
+  (add-hook 'org-after-refile-insert-hook    #'org-workflow-save-org-buffers)
+  ;; refile hook fires before the source subtree is deleted, so save after the whole command
+  (advice-add 'org-refile :after #'org-workflow-save-org-buffers)
+  ;; properties / planning / priority / archiving have no hook
+  (dolist (cmd '(org-set-property org-delete-property org-schedule org-deadline
+                                  org-priority org-set-effort org-set-tags-command
+                                  org-archive-subtree org-archive-to-archive-sibling))
+    (advice-add cmd :after #'org-workflow-save-org-buffers)))
+
 (defun org-workflow-init ()
   "Configure Org mode and friends."
   (setq org-startup-indented t
@@ -106,6 +127,8 @@
   (add-hook 'org-mode-hook #'org-appear-mode)
 
   (add-hook 'org-mode-hook #'olivetti-mode)
+
+  (org-workflow-auto-save-setup)
 
   (org-babel-do-load-languages
    'org-babel-load-languages
