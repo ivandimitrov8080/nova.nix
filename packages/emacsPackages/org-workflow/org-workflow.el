@@ -17,6 +17,9 @@
 (require 'markdown-mode)
 (require 'org-caldav)
 
+(defvar org-agenda-inbox (file-name-concat org-directory "inbox.org"))
+(defvar org-agenda-projects (file-name-concat org-directory "projects.org"))
+
 (defun org-workflow-save-org-buffers (&rest _)
   "Quietly save all Org buffers.  Safe to call from hooks and advice."
   (let ((inhibit-message t))
@@ -52,26 +55,16 @@
 
   (setq org-agenda-files (mapcar
                           (apply-partially #'file-name-concat org-directory)
-                          '("inbox.org" "projects.org" "calendar.org"))
+                          '("inbox.org" "projects.org"))
         org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "WAITING(w@)" "|" "DONE(d)" "CANCELLED(c@)"))
-        org-todo-keyword-faces '(("NEXT"    . "green")
-                                 ("WAITING" . "orange")
-                                 ("SOMEDAY" . "grey50"))
-        org-tag-alist '((:startgroup)
-                        ("work" . ?w) ("home" . ?h)
-                        (:endgroup)
-                        ("project"    . ?p)
-                        ("subproject" . ?s))
-        org-tags-exclude-from-inheritance '("project" "subproject")
         org-stuck-projects '("+LEVEL=2/-DONE" ("NEXT") nil "")
         org-log-done 'time
         org-log-refile 'time
         org-log-into-drawer t
         org-refile-targets '((org-agenda-files :maxlevel . 6))
         org-refile-use-outline-path 'file
-        org-outline-path-complete-in-steps nil
         org-refile-allow-creating-parent-nodes 'confirm
-        org-agenda-span 'week
+        org-agenda-span 'month
         org-archive-location (file-name-concat org-directory "archive.org::* Archived"))
   (setq org-capture-templates
         '(("t" "Task → inbox" entry (file "inbox.org")
@@ -80,12 +73,9 @@
            "* %?\n%U\n" :empty-lines 1)))
   (setq org-agenda-custom-commands
         '(("n" "Next actions" todo "NEXT")
-          ("w" "Waiting for" todo "WAITING")
           ("i" "Inbox — process me" alltodo ""
-           ((org-agenda-files '("~/org/inbox.org"))))
-          ("p" "Projects" tags-todo "project"
-           ((org-agenda-overriding-header "Open projects")))
-          ("R" "Weekly review"
+           ((org-agenda-files (list org-agenda-inbox))))
+          ("R" "Review"
            ((stuck "")
             (todo "NEXT")
             (todo "WAITING")
@@ -98,9 +88,12 @@
 
   (setq org-caldav-url "https://dav.idimitrov.dev/ivan@idimitrov.dev"
         org-caldav-calendar-id "10be6c74-1a5f-40ae-9036-74439790e4d2"
-        org-caldav-inbox "~/org/calinbox.org"
-        org-caldav-files nil
-        org-icalendar-timezone "Asia/Bangkok")
+        org-caldav-inbox org-agenda-inbox
+        org-caldav-files (list org-agenda-projects)
+        org-caldav-delete-org-entries 'never
+        org-caldav-todo-percent-states '((0 "TODO") (10 "NEXT") (50 "WAITING") (100 "DONE"))
+        org-icalendar-timezone "Asia/Bangkok"
+        org-icalendar-include-todo '("TODO" "NEXT" "WAITING" "DONE"))
 
   (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
   (add-hook 'org-mode-hook #'org-indent-mode)
