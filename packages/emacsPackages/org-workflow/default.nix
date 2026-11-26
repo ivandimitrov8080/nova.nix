@@ -7,6 +7,7 @@
   mixed-pitch,
   olivetti,
   ob-nix,
+  org-caldav,
   markdown-mode,
   htmlize,
   pkgs,
@@ -24,6 +25,7 @@ trivialBuild {
     mixed-pitch
     olivetti
     ob-nix
+    org-caldav
     markdown-mode
     htmlize
   ];

@@ -15,6 +15,7 @@
 (require 'org-appear)
 (require 'mixed-pitch)
 (require 'markdown-mode)
+(require 'org-caldav)
 
 (defun org-workflow-init ()
   "Configure Org mode and friends."
@@ -73,6 +74,12 @@
                '(org-match-sparse-tree nil "TODO=\"NEXT\""))
   (global-set-key (kbd "C-c c") #'org-capture)
   (global-set-key (kbd "C-c a") #'org-agenda)
+
+  (setq org-caldav-url "https://dav.idimitrov.dev/ivan@idimitrov.dev"
+        org-caldav-calendar-id "10be6c74-1a5f-40ae-9036-74439790e4d2"
+        org-caldav-inbox "~/org/calinbox.org"
+        org-caldav-files nil
+        org-icalendar-timezone "Asia/Bangkok")
 
   (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
   (add-hook 'org-mode-hook #'org-indent-mode)
