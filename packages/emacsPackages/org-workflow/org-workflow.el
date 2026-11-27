@@ -81,6 +81,7 @@
         org-log-into-drawer t
         org-refile-targets '((org-agenda-files :maxlevel . 6))
         org-refile-use-outline-path 'file
+        org-outline-path-complete-in-steps nil
         org-refile-allow-creating-parent-nodes 'confirm
         org-agenda-span 'month
         org-archive-location (file-name-concat org-directory "archive.org::* Archived"))
