@@ -70,6 +70,7 @@
       };
     in
     {
+      inherit (inputs) self;
       nixosConfigurations.default = host;
       nixosConfigurations.nova = host;
       packages.x86_64-linux.emacs = pkgs.emacs-custom;
