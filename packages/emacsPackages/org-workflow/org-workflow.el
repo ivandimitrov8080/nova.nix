@@ -111,6 +111,7 @@
         org-caldav-files (list org-agenda-projects)
         org-caldav-delete-org-entries 'never
         org-caldav-todo-percent-states '((0 "TODO") (10 "NEXT") (50 "WAITING") (100 "DONE"))
+        org-caldav-sync-todo t
         org-icalendar-timezone "Asia/Bangkok"
         org-icalendar-include-todo '("TODO" "NEXT" "WAITING" "DONE"))
   (advice-add 'org-caldav-put-event :before #'org-caldav-insert-parent-rel)
